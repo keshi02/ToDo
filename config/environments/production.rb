@@ -87,6 +87,9 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # Blocked hosts: todo-0a5t.onrender.comというエラーが発生
+  config.hosts << "todo-0a5t.onrender.com"
+
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
