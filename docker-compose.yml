@@ -1,0 +1,38 @@
+# Docker Composeは、複数のコンテナで構成されるアプリケーションについてDockerイメージのビルドや
+# 各コンテナの起動・停止といった管理を行うためのツールです。
+# docker-compose.yml というファイルに記述することで、 Docker イメージのビルドやコンテナの起動を一括で行うことができる
+# Use postgres/example user/password credentials
+
+# Docker Composeのバージョン
+version: '3.9'
+
+services:
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pid/server.pid && bundle exec rails tailwindcss:build && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/todo
+    ports:
+      - 3000:3000
+    #先にdbから起動させる -> web サービス（Rails アプリケーション）が起動する際に、データベースが利用可能な状態であることを保証するためです。データベースが起動していないと、アプリケーションはデータベース接続に失敗し、正常に動作しない可能性があります
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+
+  db:
+    image: postgres:16
+    # DBファイルのパス(/var/lib/postgresql/data)をvolumeにマウントしてデータを永続化するための設定
+    volumes:
+      - db-store:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: todo_database
+      TZ: 'Asia/Tokyo'
+    ports:
+     - "5432:5432"
+    restart: always
+volumes:
+  db-store:
+  
