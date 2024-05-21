@@ -1,0 +1,39 @@
+<nav class="w-full">
+  <div class="flex justify-between max-w-5xl mx-auto">
+    <div class="flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+      </svg>
+      <h2 class="text-xl font-bold">ToDo</h2>
+    </div>
+
+  <div>
+    <div class="flex lg:hidden">
+      <botton
+        id="menu-btn"
+        type="botton"
+        class="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-noe focus:text-gray-600 dark:focus:text-gray-400"
+        aria-label="toggle menu"
+      >
+        <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
+          <path
+          fill-rule="evenodd"
+          d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
+          ></path>
+          </svg>
+      </botton>
+    </div>
+
+    <div id="mobile-menu" class="hidden -mx-4 lg:flex lg:items-center">
+      <%= link_to "ログイン", "#", class: "block mx-4 mt-2 text-sm text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400" %>
+      <%= link_to "新規登録", "#", class: "block mx-4 mt-2 text-sm text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400" %>
+    </div>
+  </div>
+</nav>
+<script>
+  document.getElementById('menu-btn').addEventListener('click', function() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+    this.style.display = 'none'; 
+  });
+</script>
