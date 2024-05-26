@@ -22,7 +22,20 @@
   </head>
 
   <body>
-    <%= render 'shared/before_login_header' %>
+    <% if flash.any? %>
+    <% flash.each do |message_type, message| %>
+      <div class="<%= flash_background_color(message_type) %> px-4 py-2 rounded-md text-white mb-4" role="alert"> 
+        <p><%= message %></p>
+      </div>
+    <% end %>
+    <% end %>
+
+    <% if logged_in? %>
+      <%= render 'shared/after_login_header' %>
+    <% else %>
+      <%= render 'shared/before_login_header' %>
+    <% end %>
+    
     <div>
       <%= yield %>
     </div>
