@@ -35,10 +35,13 @@
     <% else %>
       <%= render 'shared/before_login_header' %>
     <% end %>
-    
+
     <div>
       <%= yield %>
     </div>
+
+    <div class="pt-10">
     <%= debug(params) if Rails.env.development? %>
+    </div>
   </body>
 </html>
