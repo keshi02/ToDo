@@ -1,0 +1,9 @@
+<div>
+  <h1 class="pl-10 pt-10 font-bold text-4xl"><%= @user.name %> のToDo</h1>
+</div>
+<div>
+  <% @todos.each do |todo| %>
+    <p class="pl-10 pt-10 font-bold text-xl"><%= todo.title %></p>
+    <p class="pl-10"><%= todo.content %></p>
+  <% end %>
+</div>
