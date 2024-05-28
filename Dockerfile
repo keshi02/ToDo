@@ -11,6 +11,9 @@ COPY Gemfile Gemfile.lock /todo/
 # bundle installを実行
 RUN bundle install
 
+# アセットプリコンパイル
+RUN bundle exec rails assets:precompile
+
 # ホスト(ローカル)のファイルをコンテナ内の作業ディレクトリにコピー
 COPY . /todo/
 
@@ -24,3 +27,6 @@ EXPOSE 3000
 
 # コンテナ起動時に実行するコマンドを指定
 CMD ["bash", "-c", "rm -f tmp/pids/server.pid && bundle exec rails db:migrate && bundle exec rails s -b '0.0.0.0'"]
+
+
+
