@@ -8,6 +8,20 @@ class TodosController < ApplicationController
     @todo = current_user.todos.find(params[:id])
   end
 
+  def new
+    @todo = current_user.todos.build
+  end
+
+  def create
+    @todo = current_user.todos.build(todo_params)
+    if @todo.save
+      flash[:success] = "ToDoを作成しました！"
+      redirect_to todos_path
+    else
+      render 'new', status: :unprocessable_entity
+    end
+  end
+
   private
 
   def todo_params

@@ -1,8 +1,8 @@
 <div>
-  <h1 class="pl-10 pt-10 font-bold text-4xl"><%= @user.name %> のToDo</h1>
+  <h1 class="pl-10 pt-10 font-bold text-4xl max-w-2xl mx-auto"><%= @user.name %> のToDo</h1>
 </div>
-<div>
+<div class="pt-10 max-w-2xl mx-auto">
   <% @todos.each do |todo| %>
-    <%= link_to todo.title, todo_path(todo),  class:"pl-10 pt-10 font-bold text-xl block" %>
+    <%= link_to todo.title, todo_path(todo),  class:"ml-10 mt-5 mr-5 p-3 font-bold text-xl flex border" %>
   <% end %>
 </div>
