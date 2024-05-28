@@ -3,7 +3,6 @@
 </div>
 <div>
   <% @todos.each do |todo| %>
-    <p class="pl-10 pt-10 font-bold text-xl"><%= todo.title %></p>
-    <p class="pl-10"><%= todo.content %></p>
+    <%= link_to todo.title, todo_path(todo),  class:"pl-10 pt-10 font-bold text-xl block" %>
   <% end %>
 </div>
