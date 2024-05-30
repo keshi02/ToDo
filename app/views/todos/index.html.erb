@@ -4,6 +4,9 @@
 </div>
 <div class="pt-10 max-w-2xl mx-auto">
   <% @todos.each do |todo| %>
-    <%= link_to todo.title, todo_path(todo),  class:"ml-10 mt-5 mr-5 p-3 font-bold text-xl flex border" %>
+    <div class="ml-10 mt-5 mr-5 p-3 border">
+      <%= link_to todo.title, todo_path(todo),  class:"font-bold text-xl" %>
+      <%= link_to "削除", todo_path(todo), data: {turbo_method: :delete}, class: "text-sm font-midium flex flex-row-reverse" %>
+    </div>
   <% end %>
 </div>

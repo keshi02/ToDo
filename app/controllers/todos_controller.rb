@@ -43,6 +43,12 @@ class TodosController < ApplicationController
     end
   end
 
+  def destroy
+    @todo = current_user.todos.find_by(id: params[:id])
+    @todo.destroy
+    redirect_to todos_path, success: "削除しました😎", status: :see_other
+  end
+
   private
 
   def todo_params
