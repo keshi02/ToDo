@@ -10,5 +10,10 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
   resources :users
-  resources :todos
+  resources :todos, only:[:create, :new, :destroy, :index, :show] do
+    collection do
+      get 'edit_multiple'
+      patch 'update_multiple'
+    end
+  end
 end

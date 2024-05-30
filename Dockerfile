@@ -23,10 +23,9 @@ COPY entrypoint.sh /usr/bin/
 # entrypoint.shの実行権限を付与
 RUN chmod +x /usr/bin/entrypoint.sh
 
+ENTRYPOINT ["entrypoint.sh"]
+
 EXPOSE 3000
 
 # コンテナ起動時に実行するコマンドを指定
-CMD ["bash", "-c", "rm -f tmp/pids/server.pid && bundle exec rails db:migrate && bundle exec rails s -b '0.0.0.0'"]
-
-
-
+CMD ["rails", "server", "-b", "0.0.0.0"]

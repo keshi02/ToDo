@@ -1,0 +1,25 @@
+<%= content_for(:title, "ToDo | 編集画面") %>
+<h1 class="pl-10 pt-10 font-bold text-4xl max-w-2xl mx-auto">編集画面</h1>
+
+<%= form_with url: update_multiple_todos_path, method: :patch do |f| %>
+  <div class="mx-auto max-w-2xl">  
+    <%= f.submit "更新", class: "px-4 py-2 mt-10 text-sm font-midium text-white transition-colors duration-200 transform bg-blue-400 rounded-lg hover:bg-blue-500 focus:outline-none focus:bg-blue-600" %>
+  </div>
+  <% if @errors.any? %>
+    <% @errors.each do |error| %>
+      <p class="text-red-500"><%= error %></p>
+    <% end %>
+  <% end %>
+  <% current_user.todos.order(created_at: :desc).each do |todo| %>
+    <div class="pt-10 max-w-2xl mx-auto">
+      <div>
+        <%= f.label "todos[#{todo.id}][title]", "Title", class: "flex-row text-right pr-10" %>
+        <%= f.text_field "todos[#{todo.id}][title]", value: todo.title, class: "ml-10 mt-5 pr-20 p-3" %>
+      </div>
+      <div>
+        <%= f.label "todos[#{todo.id}][content]", "Content", class: "text-right pr-4" %>
+        <%= f.text_field "todos[#{todo.id}][content]", value: todo.content, class: "ml-10 mt-5 pr-20 p-3" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
