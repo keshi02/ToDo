@@ -7,11 +7,14 @@
       <p class="text-red-500"><%= error %></p>
     <% end %>
   <% end %>
-  <%= f.label :title, class: "block" %>
+  <%= f.label :title, "タイトル", class: "block" %>
   <%= f.text_field :title, class: "block mb-5" %>
 
-  <%= f.label :content, class: "block" %>
+  <%= f.label :content, "本文", class: "block" %>
   <%= f.text_field :content, class: "block mb-5" %>
+
+  <%= f.label :category_name, "カテゴリー" %>
+  <%= f.text_field :category_name %>
 
   <%= f.submit "作成", class: "px-4 py-2 mt-4 text-sm font-medium text-white uppercase transition-colors duration-200 transform bg-blue-600 rounded-md lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500" %>
 <% end %>

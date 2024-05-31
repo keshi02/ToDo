@@ -10,11 +10,14 @@ class TodosController < ApplicationController
 
   def new
     @todo = current_user.todos.build
+    @todos = []
+    @categories = current_user.categories.all
+    @todos = @todos.push(@todo)
   end
 
   def create
     @todo = current_user.todos.build(todo_params)
-    if @todo.save
+    if @todo.save_with_category(category_name: params.dig(:todo, :category_name), user_id: current_user.id)
       flash[:success] = "ToDoを作成しました!"
       redirect_to todos_path
     else
