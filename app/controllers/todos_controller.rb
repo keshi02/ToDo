@@ -34,7 +34,12 @@ class TodosController < ApplicationController
     # フォームから送信された各Todoを処理します
     todos_params.each do |id, todo_attributes|
       todo = current_user.todos.find(id)
-      unless todo.update(todo_attributes.permit(:title, :content))
+      if todo.update(todo_attributes.permit(:title, :content))
+        if todo_attributes.permit(:category_name).present?
+          @new_category = Category.find_or_create_by(name: todo_attributes[:category_name], user_id: current_user.id)
+          todo.update!(category_id: @new_category.id)
+        end
+      else
         @errors.push(todo.errors.full_messages)
         @invalid_todo = todo
       end

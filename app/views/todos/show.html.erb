@@ -3,5 +3,8 @@
 </div>
 <div>
   <p class="pl-10 pt-10 font-bold text-xl"><%= @todo.title %></p>
+  <% if @todo.category.name %>
+    <p class="pl-10">カテゴリー: <%= @todo.category.name %></p>
+  <% end %>
   <p class="pl-10"><%= @todo.content %></p>
 </div>

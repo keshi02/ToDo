@@ -20,6 +20,12 @@
         <%= f.label "todos[#{todo.id}][content]", "Content", class: "text-right pr-4" %>
         <%= f.text_field "todos[#{todo.id}][content]", value: todo.content, class: "ml-10 mt-5 pr-20 p-3" %>
       </div>
-    </div>
+        <%= f.label "todos[#{todo.id}][category_name]", "カテゴリー", class: "text-right" %>
+        <% if todo.category %>
+          <%= f.text_field "todos[#{todo.id}][category_name]", value: todo.category.name, class: "ml-10 mt-5 pr-20 p-3" %>
+        <% else %>
+          <%= f.text_field "todos[#{todo.id}][category_name]", class: "ml-10 mt-5 pr-20 p-3" %>
+        <% end %>
+      </div>
   <% end %>
 <% end %>
