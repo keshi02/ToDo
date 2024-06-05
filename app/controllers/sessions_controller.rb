@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:session][:email])
     if @user && @user.authenticate(params[:session][:password])
       reset_session # <- 攻撃者のセッションを共有させるセッション固定攻撃対策
+      params[:session][:remember_me] == "1" ? remember(@user) : forget(@user)
       log_in(@user)
       flash[:success] = "ログインしました"
       redirect_to root_url
@@ -17,9 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     if current_user
-      reset_session
-      # session.delete(:user_id)
-      @current_user = nil # 安全のため
+      log_out if logged_in?
       flash[:success] = "ログアウトしました"
     end
     redirect_to root_path, status: :see_other

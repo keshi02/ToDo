@@ -16,4 +16,5 @@ Rails.application.routes.draw do
       patch 'update_multiple'
     end
   end
+  resources :password_resets, only:[:new, :create, :edit, :update]
 end
